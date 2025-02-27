@@ -1,0 +1,110 @@
+.card{
+    width: 280px;
+    height: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #3C3C3C;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 20px;
+    border: 1px solid #5E5E5E;
+    position: relative;
+}
+
+.card-image_container{
+    width: 100%;
+    height: 180px;
+}
+
+.card-image{
+    width: 100%;
+    height: 180px;
+    overflow: hidden;
+    object-fit: cover;
+    background-position: center center;
+}
+
+.card-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    background-color: #3C3C3C;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0 20px;
+    border-radius: 10px;
+    border: 1px solid #5E5E5E;
+}
+
+.card-delete{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #ff0000;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.card-text{
+    display: flex;
+    justify-content: space-between;
+    width: 240px;
+}
+
+.card-button-plus-added{
+    padding: 10px 20px;
+    background-color: #24B936;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 10px 0;
+}
+
+.card-button{
+    padding: 10px 50px;
+    background-color: #ffffff;
+    color: #000000;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 10px 0;
+    font-family: 'Inter', sans-serif;
+}
+
+.card-button-plus{
+    padding: 10px 20px;
+    background-color: #24B936;
+    background-image: url(../../utils/images/+.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    color: #000000;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 10px 0;
+    font-family: 'Inter', sans-serif;
+}
+
+.card-buttons{
+    display: flex;
+    justify-content: space-between;
+    width: 240px;
+    margin-bottom: 20px;
+}

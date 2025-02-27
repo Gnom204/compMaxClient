@@ -1,0 +1,62 @@
+.cardBig {
+    display: flex;
+    align-items: center;
+    background-color: #3C3C3C;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 30px 0;
+    border: 1px solid #5E5E5E;
+    max-width: 700px;
+    position: relative;
+}
+
+.cardBig_img-container {
+    flex-shrink: 0;
+    width: 250px;
+    height: 150px;
+    overflow: hidden;
+}
+
+.cardBig_img-container img {
+    width: 100%;
+    height: 100%;
+}
+
+.cardBig_content {
+    flex-grow: 1;
+    padding: 20px;
+    color: #FFFFFF;
+}
+
+.cardBig_title {
+    font-size: 24px;
+    margin: 0 0 30px;
+}
+
+.cardBig_description {
+    font-size: 14px;
+    margin-bottom: 20px;
+    color: #B1B1B1;
+}
+
+.cardBig_func {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cardBig_price {
+    font-size: 16px;
+}
+
+.cardBig_delete-icon {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-image: url(../../utils/images/trash-can-with-cover-from-side-view-svgrepo-com\ 1.png);
+background-repeat: no-repeat;
+background-size: contain;
+}

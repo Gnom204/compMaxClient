@@ -1,0 +1,26 @@
+.logo{
+    width: 100px;
+    height: 40px;
+    font-size: 28px;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
+.header{
+    border-bottom: 2px solid white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 40px 0;
+}
+.profile{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.text{
+    color: white;
+    font-size: 20px;
+    background-color: transparent;
+}

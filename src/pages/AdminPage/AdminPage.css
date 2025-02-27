@@ -1,0 +1,22 @@
+.links {
+    display: flex;
+    gap: 10px;
+    margin: 20px;
+}
+
+.links a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    transition: color 0.3s;
+    border: 1px solid white;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.links a:hover {
+    color: #0056b3;
+    border-color: #0056b3;
+}
+
