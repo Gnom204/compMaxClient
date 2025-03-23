@@ -9,4 +9,12 @@
 .footer{
     border-top: 2px solid white;
     margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    align-items: center;
+}
+
+.footer-url{
+    color: white;
 }

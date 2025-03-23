@@ -25,25 +25,29 @@ console.log(data)
         });
     }, []);
 
-  return (
-    <>
-    {console.log(comp)}
-    <div className='more-info'>
-        <div className='more-info_img'>
-            <img src={comp.image} alt={comp.name} />
+    return (
+        <div className='more-info-comp'>
+            <div className='right-column-comp'>
+                <div className='more-info_img-comp'>
+                    <img src={comp.image} alt={comp.name} />
+                </div>
+                <div className='description-section-comp'>
+                    <p>Описание</p>
+                    <p className='more-info_description-comp'>{comp.description}</p>
+                </div>
+            </div>
+    
+            <div className='left-column-comp'>
+                <h2 className='more-info_title-comp'>{comp.name}</h2>
+                <div className='more-info_bot-comp'>
+                    <p className='more-info_price-comp'>{comp.price}₽</p>
+                    <button onClick={addCart} className='more-info_buy-comp'>
+                        {isInCart ? 'В корзине' : 'Купить'}
+                    </button>
+                </div>
+            </div>
         </div>
-        <div className='more-info_content'>
-        <h2 className='more-info_title'>{comp.name}</h2>
-        <p>Описание</p>
-        <p className='more-info_description'>{comp.description}</p>
-        <div className='more-info_bot'>
-            <p className='more-info_price'>{comp.price}₽</p>
-            <button onClick={addCart} className='more-info_buy'>{isInCart ? 'В корзине' : 'Купить'}</button>
-        </div>
-        </div>
-    </div>
-    </>
-  )
-}
+      )
+    }
 
 export default MoreInfoComp

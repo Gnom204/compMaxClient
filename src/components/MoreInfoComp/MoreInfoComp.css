@@ -1,75 +1,102 @@
-.more-info {
+.more-info-comp {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    gap: 40px;
     background-color: #2C2C2C;
     border-radius: 10px;
-    padding: 20px;
+    padding: 30px;
     color: #FFFFFF;
 }
 
-.more-info_img {
-    width: 100%;
-    max-width: 300px;
-    overflow: hidden;
-    border-radius: 10px;
-    margin-bottom: 20px;
-}
-
-.more-info_img img {
-    width: 100%;
-    height: auto;
-}
-
-.more-info_content {
-    text-align: center;
+.left-column-comp {
+    flex: 1.5;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    max-width: 500px; /* Например, если здесь задана ширина */
-    width: 100%; /* Убедитесь, что ширина родителя не ограничена */
+    gap: 25px;
 }
 
-.more-info_title {
-    font-size: 24px;
-    margin: 0 0 10px;
+.more-info_img-comp {
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
 }
 
-.more-info_description {
+.more-info_img-comp img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.description-section-comp {
+    padding: 15px;
+    background: #373737;
+    border-radius: 8px;
+}
+
+.more-info_description-comp {
     font-size: 16px;
     color: #B1B1B1;
-    margin-bottom: 20px;
-    width: 300px;
-    word-wrap: break-word;
-    text-align: center;
-    box-sizing: border-box; /* Добавьте это */
+    line-height: 1.6;
+    margin-top: 10px;
 }
 
-.more-info_bot {
+.right-column-comp {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.more-info_title-comp {
+    font-size: 32px;
+    margin: 0 0 20px;
+}
+
+.more-info_bot-comp {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
-    max-width: 300px;
-    margin-top: 20px;
+    margin-top: auto;
     gap: 20px;
 }
 
-.more-info_price {
-    font-size: 18px;
+.more-info_price-comp {
+    font-size: 24px;
+    font-weight: bold;
 }
 
-.more-info_buy {
-    padding: 10px 20px;
+.more-info_buy-comp {
+    padding: 12px 30px;
+    width: 50%;
+    font-size: 18px;
     border: none;
     border-radius: 5px;
     background-color: #FF5A5A;
     color: #FFFFFF;
     cursor: pointer;
     transition: background-color 0.3s;
+    flex-shrink: 0;
 }
 
-.more-info_buy:hover {
+.more-info_buy-comp:hover {
     background-color: #FF3A3A;
 }
 
+@media (max-width: 768px) {
+    .more-info-comp {
+        flex-direction: column;
+        padding: 20px;
+    }
+    
+    .more-info_title-comp {
+        font-size: 24px;
+    }
+    
+    .more-info_price-comp {
+        font-size: 20px;
+    }
+    
+    .more-info_buy-comp {
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+}

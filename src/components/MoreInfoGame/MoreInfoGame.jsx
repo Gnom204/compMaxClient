@@ -17,7 +17,6 @@ isInCart ? navigate('/cart') :
  setIsInCart(true)
 }
 
-
     useEffect(() => {
         getGameById(id).then((data) => {
             setGame(data.game)
@@ -25,25 +24,33 @@ isInCart ? navigate('/cart') :
         });
     }, []);
 
-  return (
-    <>
-    {console.log(game)}
-    <div className='more-info'>
-        <div className='more-info_img'>
-            <img src={game.image} alt={game.name} />
-        </div>
-        <div className='more-info_content'>
-        <h2 className='more-info_title'>{game.name}</h2>
-        <p>Описание</p>
-        <p className='more-info_description'>{game.description}</p>
-        <div className='more-info_bot'>
-            <p className='more-info_price'>{game.price}₽</p>
-            <button onClick={addCart} className='more-info_buy'>{isInCart ? 'В корзине' : 'Купить'}</button>
-        </div>
-        </div>
-    </div>
-    </>
-  )
-}
+    return (
+        <>
+          <div className='more-info'>
+            {/* Левая колонка с изображением и описанием */}
+            <div className='left-column'>
+              <div className='more-info_img'>
+                <img src={game.image} alt={game.name} />
+              </div>
+              <div className='description-section'>
+                <p>Описание</p>
+                <p className='more-info_description'>{game.description}</p>
+              </div>
+            </div>
+    
+            {/* Правая колонка с остальной информацией */}
+            <div className='right-column'>
+              <h2 className='more-info_title'>{game.name}</h2>
+              <div className='more-info_bot'>
+                <p className='more-info_price'>{game.price}₽</p>
+                <button onClick={addCart} className='more-info_buy'>
+                  {isInCart ? 'В корзине' : 'Купить'}
+                </button>
+              </div>
+            </div>
+          </div>
+        </>
+      )
+    }
 
 export default MoreInfoGame

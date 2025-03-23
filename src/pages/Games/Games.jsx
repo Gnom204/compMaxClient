@@ -2,26 +2,49 @@ import React, { useEffect, useState } from 'react';
 import './Games.css';
 import { getGames } from '../../utils/api/gameApi';
 import Card from '../../components/Card/Card';
+import { useNavigate } from 'react-router-dom';
 
 function Games() {
-  const [products, setProducts] = useState([]); // Данные товаров
-  const [selectedGenre, setSelectedGenre] = useState('Все'); // Выбранный жанр
-  const [genres, setGenres] = useState([]); // Список уникальных жанров
+  const [products, setProducts] = useState([]);
+  const [selectedGenre, setSelectedGenre] = useState('Все');
+  const [genres, setGenres] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [suggestions, setSuggestions] = useState([]);
+  const navigate = useNavigate();
 
-  // Загрузка данных с API
   useEffect(() => {
     getGames().then((data) => setProducts(data.games));
   }, []);
 
-  // Получаем уникальные жанры из данных товаров
   useEffect(() => {
     if (products.length > 0) {
       const uniqueGenres = [...new Set(products.map((product) => product.genre))];
-      setGenres(['Все', ...uniqueGenres]); // Добавляем "Все" для отображения всех товаров
+      setGenres(['Все', ...uniqueGenres]);
     }
-  }, [products]); // Зависимость от products
+  }, [products]);
 
-  // Фильтруем товары по выбранному жанру
+  // Обработка поиска
+  const handleSearch = (e) => {
+    const query = e.target.value.toLowerCase();
+    setSearchQuery(query);
+    
+    if (query.length > 0) {
+      const filtered = products.filter(game => 
+        game.name.toLowerCase().includes(query)
+      );
+      setSuggestions(filtered);
+    } else {
+      setSuggestions([]);
+    }
+  };
+
+  // Переход на страницу игры
+  const handleSuggestionClick = (id) => {
+    navigate(`/games/${id}`);
+    setSearchQuery('');
+    setSuggestions([]);
+  };
+
   const filteredProducts =
     selectedGenre === 'Все'
       ? products
@@ -29,10 +52,31 @@ function Games() {
 
   return (
     <div className='games'>
+      <div className="search-container">
+        <input
+          type="text"
+          placeholder="Поиск игр..."
+          value={searchQuery}
+          onChange={handleSearch}
+          className="search-input"
+        />
+        {suggestions.length > 0 && (
+          <ul className="suggestions-list">
+            {suggestions.map(game => (
+              <li
+                key={game._id}
+                onClick={() => handleSuggestionClick(game._id)}
+                className="suggestion-item"
+              >
+                {game.name}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
       <h2 className='title'>Новинки</h2>
       <ul className='cards'>
         {products &&
-          products.length > 0 &&
           products.slice(0, 4).map((game) => (
             <Card
               key={game._id}
@@ -48,6 +92,7 @@ function Games() {
       </ul>
 
       <h2 className='title'>Рекомендуемое</h2>
+
       <div className='genres'>
         {genres.map((genre) => (
           <button
@@ -61,20 +106,18 @@ function Games() {
       </div>
 
       <ul className='cards'>
-        {products &&
-          products.length > 0 &&
-          filteredProducts.map((game) => (
-            <Card
-              key={game._id}
-              name={game.name}
-              description={game.description}
-              price={game.price}
-              image={game.image}
-              id={game._id}
-              isAdmin={false}
-              IsComp={false}
-            />
-          ))}
+        {filteredProducts.map((game) => (
+          <Card
+            key={game._id}
+            name={game.name}
+            description={game.description}
+            price={game.price}
+            image={game.image}
+            id={game._id}
+            isAdmin={false}
+            IsComp={false}
+          />
+        ))}
       </ul>
     </div>
   );

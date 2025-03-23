@@ -2,26 +2,47 @@ import React, { useEffect, useState } from 'react';
 import './Computer.css';
 import Card from '../../components/Card/Card';
 import { getComps } from '../../utils/api/compApi';
+import { useNavigate } from 'react-router-dom';
 
 function Games() {
-  const [comps, setComps] = useState([]); // Данные компьютеров
-  const [selectedGenre, setSelectedGenre] = useState('Все'); // Выбранный жанр
-  const [genres, setGenres] = useState([]); // Список уникальных жанров
+  const [comps, setComps] = useState([]);
+  const [selectedGenre, setSelectedGenre] = useState('Все');
+  const [genres, setGenres] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [suggestions, setSuggestions] = useState([]);
+  const navigate = useNavigate();
 
-  // Загрузка данных с API
   useEffect(() => {
     getComps().then((data) => setComps(data));
   }, []);
 
-  // Получаем уникальные жанры из данных компьютеров
   useEffect(() => {
     if (comps.length > 0) {
       const uniqueGenres = [...new Set(comps.map((comp) => comp.genre))];
-      setGenres(['Все', ...uniqueGenres]); // Добавляем "Все" для отображения всех компьютеров
+      setGenres(['Все', ...uniqueGenres]);
     }
-  }, [comps]); // Зависимость от comps
+  }, [comps]);
 
-  // Фильтруем компьютеры по выбранному жанру
+  const handleSearch = (e) => {
+    const query = e.target.value.toLowerCase();
+    setSearchQuery(query);
+    
+    if (query.length > 0) {
+      const filtered = comps.filter(comp => 
+        comp.name.toLowerCase().includes(query)
+      );
+      setSuggestions(filtered);
+    } else {
+      setSuggestions([]);
+    }
+  };
+
+  const handleSuggestionClick = (id) => {
+    navigate(`/computers/${id}`);
+    setSearchQuery('');
+    setSuggestions([]);
+  };
+
   const filteredComps =
     selectedGenre === 'Все'
       ? comps
@@ -29,6 +50,28 @@ function Games() {
 
   return (
     <div className='games'>
+       <div className="search-container">
+        <input
+          type="text"
+          placeholder="Поиск компьютеров..."
+          value={searchQuery}
+          onChange={handleSearch}
+          className="search-input"
+        />
+        {suggestions.length > 0 && (
+          <ul className="suggestions-list">
+            {suggestions.map(comp => (
+              <li
+                key={comp._id}
+                onClick={() => handleSuggestionClick(comp._id)}
+                className="suggestion-item"
+              >
+                {comp.name}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
       <h2 className='title'>Новинки</h2>
       <ul className='cards'>
         {comps.slice(0, 4).map((comp) => (
@@ -46,6 +89,7 @@ function Games() {
       </ul>
 
       <h2 className='title'>Рекомендуемое</h2>
+
       <div className='genres'>
         {genres.map((genre) => (
           <button
