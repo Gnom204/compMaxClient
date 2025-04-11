@@ -35,7 +35,6 @@
 
 .order-bottom {
   display: flex;
-  margin-bottom: 20px;
   flex-direction: column;
 }
 
@@ -93,4 +92,10 @@
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 20px;
+}
+
+.add-card{
+    margin: 0;
+    padding: 5px;
+    width: 150px;
 }

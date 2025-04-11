@@ -3,6 +3,7 @@ import { useCart } from '../../components/CartContext';
 import CardBig from '../../components/CardBig/CardBig';
 import './OrderPage.css';
 import Map from '../../components/Map/Map';
+import Popup from '../../components/CardPopup/CardPopup';
 
 const OrderPage = () => {
   const { state, dispatch } = useCart();
@@ -10,13 +11,19 @@ const OrderPage = () => {
   // Состояние для промокода и итоговой цены
   const [promocode, setPromocode] = React.useState('');
   const [showMap, setShowMap] = React.useState(false);
-
+  const [showPopup, setShowPopup] = React.useState(false);
+const [cardSave, setCardSave] = React.useState(false);
   const [totalPrice, setTotalPrice] = React.useState(0);
 
   // Вычисляем общую стоимость товаров в корзине
   const calculateTotalPrice = () => {
     return state.items.reduce((acc, item) => acc + item.price * item.quantity, 0);
   };
+
+const saveCard = () => {
+  setCardSave(true);
+  setShowPopup(false);
+};
 
   // Применяем промокод
   const applyPromocode = () => {
@@ -93,8 +100,8 @@ const OrderPage = () => {
             Применить
           </button>
         </div>
-
-        <p className='order-total'>Итого: {totalPrice.toFixed(2)}₽</p>
+{ cardSave ? <span> Карта сохранена</span> :        <button onClick={() => setShowPopup(true)} className='add-card'>Добавить карту</button>
+}        <p className='order-total'>Итого: {totalPrice.toFixed(2)}₽</p>
         <button onClick={makeOrder} className='order-button'>Оформить заказ</button>
       </div>
       <Map
@@ -102,7 +109,7 @@ const OrderPage = () => {
         onClose={() => setShowMap(false)}
         onConfirm={handleConfirmAddress}
       />
-    </div>
+<Popup isOpen={showPopup} saveCard={saveCard} onClose={() => setShowPopup(false)} />    </div>
   );
 };
 

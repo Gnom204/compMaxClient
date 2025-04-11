@@ -1,0 +1,131 @@
+.card-form-container {
+    display: flex;
+    align-items: center;
+    font-family: 'Arial', sans-serif;
+    margin: 0 auto;
+    gap: 20px;
+  }
+  
+  .credit-card {
+    width: 800px ; 
+    height: 200px;
+    perspective: 1000px;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    margin-bottom: 30px;
+  }
+  
+  .credit-card.flipped {
+    transform: rotateY(180deg);
+  }
+  
+  .front, .back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 15px;
+    padding: 20px;
+    box-sizing: border-box;
+    background: linear-gradient(45deg, #2c3e50, #3498db);
+    color: white;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  }
+  
+  .back {
+    transform: rotateY(180deg);
+    background: linear-gradient(45deg, #34495e, #2c3e50);
+  }
+  
+  .card-logo {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: right;
+  }
+  
+  .card-number {
+    font-size: 24px;
+    letter-spacing: 2px;
+    margin: 30px 0;
+    text-align: center;
+  }
+  
+  .card-details {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .card-holder div, .card-expiry div {
+    font-size: 18px;
+    letter-spacing: 1px;
+  }
+  
+  label {
+    font-size: 12px;
+    opacity: 0.8;
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .magnetic-strip {
+    height: 40px;
+    background: #2d2d2d;
+    margin: 20px 0;
+  }
+  
+  .cvv-field {
+    background: white;
+    color: #2c3e50;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: right;
+  }
+  
+  .form-fields {
+    width: 100%;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    color: white;
+    font-size: 14px;
+    margin-bottom: 5px;
+    display: block;
+  }
+  
+  .form-group input {
+    width: 90%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  .row {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+  }
+  
+  .row .form-group {
+    flex: 1;
+  }
+  
+  .submit-btn {
+    width: 100%;
+    padding: 15px;
+    background: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  
+  .submit-btn:hover {
+    background: #2980b9;
+  }
