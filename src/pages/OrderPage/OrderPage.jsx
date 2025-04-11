@@ -2,12 +2,15 @@ import React from 'react';
 import { useCart } from '../../components/CartContext';
 import CardBig from '../../components/CardBig/CardBig';
 import './OrderPage.css';
+import Map from '../../components/Map/Map';
 
 const OrderPage = () => {
   const { state, dispatch } = useCart();
 
   // Состояние для промокода и итоговой цены
   const [promocode, setPromocode] = React.useState('');
+  const [showMap, setShowMap] = React.useState(false);
+
   const [totalPrice, setTotalPrice] = React.useState(0);
 
   // Вычисляем общую стоимость товаров в корзине
@@ -35,8 +38,13 @@ const OrderPage = () => {
   };
 
   const makeOrder = () => {
+    setShowMap(true);
+  };
+
+  const handleConfirmAddress = (position, address) => {
+    setShowMap(false);
     clearCart();
-    alert('Заказ успешно оформлен!');
+    alert(`Заказ оформлен! Адрес доставки: ${address}`);
   };
 
   // Пересчитываем итоговую цену при изменении корзины
@@ -89,6 +97,11 @@ const OrderPage = () => {
         <p className='order-total'>Итого: {totalPrice.toFixed(2)}₽</p>
         <button onClick={makeOrder} className='order-button'>Оформить заказ</button>
       </div>
+      <Map
+        isOpen={showMap}
+        onClose={() => setShowMap(false)}
+        onConfirm={handleConfirmAddress}
+      />
     </div>
   );
 };
